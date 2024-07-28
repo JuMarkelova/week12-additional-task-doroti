@@ -33,19 +33,18 @@ public class RobotTests {
 
     @Test
     public void testNamesForNewFiles() {
-        File file = new File("test.txt");
-        Robot robot = new Robot();
-        List<String> names = robot.getNameFiles(file);
+        Robot robot = new Robot("test.txt");
+        List<String> names = robot.getNameFiles();
         Assert.assertEquals(names.getFirst(), "and", "Wrong name 1");
         Assert.assertEquals(names.get(1), "That", "Wrong name 1");
     }
 
     @Test
     public void createFullWordList() {
-        File file = new File("test.txt");
-        Robot robot = new Robot();
-        List<String> words = robot.getWords(file);
+        Robot robot = new Robot("test.txt");
+        List<String> words = robot.getWords();
         Assert.assertEquals(words.size(), 14, "Wrong number of words");
         Assert.assertEquals(words.getFirst(), "Hi", "Wrong first word");
+        Assert.assertEquals(words.get(4), "dehdeh2*", "Wrong fifth word");
     }
 }

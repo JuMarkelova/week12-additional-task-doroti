@@ -7,10 +7,20 @@ import java.util.StringTokenizer;
 
 public class Robot {
 
-    public List<String> getNameFiles(File file) {
+    private File originFile;
+
+    public Robot(String path) {
+        this.originFile = new File(path);
+    }
+
+    public File getOriginFile() {
+        return originFile;
+    }
+
+    public List<String> getNameFiles() {
         List<String> names = new ArrayList<>();
 
-        try (FileReader fileReader = new FileReader(file);
+        try (FileReader fileReader = new FileReader(this.originFile);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String wrongWord = null;
             String line;
@@ -36,10 +46,10 @@ public class Robot {
         return names;
     }
 
-    public List<String> getWords(File file) {
+    public List<String> getWords() {
         List<String> words = new ArrayList<>();
         String word;
-        try (FileReader reader = new FileReader(file);
+        try (FileReader reader = new FileReader(this.originFile);
              BufferedReader bReader = new BufferedReader(reader)) {
             String line;
             while ((line = bReader.readLine()) != null) {
