@@ -12,7 +12,11 @@ public class _Main {
         Robot doroti = new Robot();
 
         List<String> fileNames = doroti.getNameFiles(originFile);
-
+        for (String el : fileNames) {
+            System.out.println(el);
+        }
+        System.out.println();
+        fileNames = doroti.getWords(originFile);
         for (String el : fileNames) {
             System.out.println(el);
         }

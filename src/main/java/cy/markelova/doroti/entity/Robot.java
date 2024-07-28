@@ -31,8 +31,30 @@ public class Robot {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
         }
         return names;
+    }
+
+    public List<String> getWords(File file) {
+        List<String> words = new ArrayList<>();
+        String word;
+        try (FileReader reader = new FileReader(file);
+             BufferedReader bReader = new BufferedReader(reader)) {
+            String line;
+            while ((line = bReader.readLine()) != null) {
+                StringTokenizer tokenizer = new StringTokenizer(line);
+
+                while (tokenizer.hasMoreTokens()) {
+                    word = tokenizer.nextToken();
+                    word = word.replaceAll("^[.,]?|[.,!?;:]+$", "");
+                    words.add(word);
+                }
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return words;
     }
 }
