@@ -12,6 +12,7 @@ public class Robot {
 
         try (FileReader fileReader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String wrongWord = null;
             String line;
             while (names.size() < 2) {
                 while ((line = bufferedReader.readLine()) != null) {
@@ -19,15 +20,16 @@ public class Robot {
 
                     while (tokenizer.hasMoreTokens()) {
                         String word = tokenizer.nextToken();
-                        word = word.replaceAll("^[.,]+|[.,!?;:]+$", "");
+                        word = word.replaceAll("^[.,]?|[.,!?;:]+$", "");
                         if (!word.matches("[a-zA-Z]+-*[a-zA-Z]*")) {
+                            wrongWord = word;
+                        } else if (wrongWord != null) {
                             names.add(word);
+                            wrongWord = null;
                         }
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
