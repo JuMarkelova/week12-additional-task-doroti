@@ -47,4 +47,18 @@ public class RobotTests {
         Assert.assertEquals(words.getFirst(), "Hi", "Wrong first word");
         Assert.assertEquals(words.get(4), "dehdeh2*", "Wrong fifth word");
     }
+
+    @Test
+    public void checkEvenWords() {
+        Robot robot = new Robot("test.txt");
+        List<String> evenWords = robot.getEvenWords();
+        Assert.assertEquals(evenWords.size(), 2, "Wrong number of even words");
+    }
+
+    @Test
+    public void checkOddWords() {
+        Robot robot = new Robot("test.txt");
+        List<String> oddWords = robot.getOddWords();
+        Assert.assertEquals(oddWords.size(), 12, "Wrong number of odd words");
+    }
 }

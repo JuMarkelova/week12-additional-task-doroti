@@ -67,4 +67,42 @@ public class Robot {
         }
         return words;
     }
+
+    public List<String> getEvenWords() {
+        List<String> words = getWords();
+        List<String> evenWords = new ArrayList<>();
+        for (String el : words) {
+            int countEvenSymbol = countVowels(el);
+            if (countEvenSymbol % 2 == 0) {
+                evenWords.add(el);
+            }
+        }
+        return evenWords;
+    }
+
+    public List<String> getOddWords() {
+        List<String> words = getWords();
+        List<String> evenWords = new ArrayList<>();
+        for (String el : words) {
+            if (countVowels(el) % 2 == 1) {
+                evenWords.add(el);
+            }
+        }
+        return evenWords;
+    }
+
+    private int countVowels(String word) {
+        int count = 0;
+        for (int i = 0; i < word.length(); i++) {
+            if (isVowel(word.charAt(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean isVowel(char symbol) {
+        String vowels = "[aeyuioAEYUIO]";
+        return String.valueOf(symbol).matches(vowels);
+    }
 }
