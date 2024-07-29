@@ -122,4 +122,17 @@ public class Robot {
             System.err.println(e.getMessage());
         }
     }
+
+    public void createSecondFile(String name) {
+        File file = new File(name);
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            List<String> words = getOddWords();
+            for (String word : words) {
+                bufferedWriter.write(word + " ");
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }

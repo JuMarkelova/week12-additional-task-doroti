@@ -27,10 +27,12 @@ public class RobotTests {
 
     @AfterTest
     public void deleteFile() {
-        File file = new File("test.txt");
-        File fileFirst = new File("first.txt");
-        file.delete();
-        fileFirst.delete();
+        File testFile = new File("test.txt");
+        File testFileFirst = new File("first.txt");
+        File testFileSecond = new File("second.txt");
+        testFile.delete();
+        testFileFirst.delete();
+        testFileSecond.delete();
     }
 
     @Test
@@ -72,5 +74,15 @@ public class RobotTests {
         robot.setOriginFile(file);
         List<String> evenWords = robot.getWords();
         Assert.assertEquals(evenWords.size(), 2, "Wrong number of even words");
+    }
+
+    @Test
+    public void createSecondFile() {
+        Robot robot = new Robot("test.txt");
+        robot.createSecondFile("second.txt");
+        File file = new File("second.txt");
+        robot.setOriginFile(file);
+        List<String> evenWords = robot.getWords();
+        Assert.assertEquals(evenWords.size(), 12, "Wrong number of odd words");
     }
 }

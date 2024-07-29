@@ -16,5 +16,6 @@ public class _Main {
         }
 
         doroti.createFirstFile(fileNames.getFirst());
+        doroti.createSecondFile(fileNames.get(1));
     }
 }
