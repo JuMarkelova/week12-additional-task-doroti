@@ -28,7 +28,9 @@ public class RobotTests {
     @AfterTest
     public void deleteFile() {
         File file = new File("test.txt");
+        File fileFirst = new File("first.txt");
         file.delete();
+        fileFirst.delete();
     }
 
     @Test
@@ -60,5 +62,15 @@ public class RobotTests {
         Robot robot = new Robot("test.txt");
         List<String> oddWords = robot.getOddWords();
         Assert.assertEquals(oddWords.size(), 12, "Wrong number of odd words");
+    }
+
+    @Test
+    public void createFirstFile() {
+        Robot robot = new Robot("test.txt");
+        robot.createFirstFile("first.txt");
+        File file = new File("first.txt");
+        robot.setOriginFile(file);
+        List<String> evenWords = robot.getWords();
+        Assert.assertEquals(evenWords.size(), 2, "Wrong number of even words");
     }
 }

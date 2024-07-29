@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class Robot {
 
+
     private File originFile;
 
     public Robot(String path) {
@@ -15,6 +16,10 @@ public class Robot {
 
     public File getOriginFile() {
         return originFile;
+    }
+
+    public void setOriginFile(File originFile) {
+        this.originFile = originFile;
     }
 
     public List<String> getNameFiles() {
@@ -104,5 +109,18 @@ public class Robot {
     private boolean isVowel(char symbol) {
         String vowels = "[aeyuioAEYUIO]";
         return String.valueOf(symbol).matches(vowels);
+    }
+
+    public void createFirstFile(String name) {
+        File file = new File(name);
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            List<String> words = getEvenWords();
+            for (String word : words) {
+                bufferedWriter.write(word + " ");
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

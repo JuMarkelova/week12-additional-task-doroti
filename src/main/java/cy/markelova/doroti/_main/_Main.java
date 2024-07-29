@@ -14,10 +14,7 @@ public class _Main {
         for (String el : fileNames) {
             System.out.println(el);
         }
-        System.out.println();
-        fileNames = doroti.getWords();
-        for (String el : fileNames) {
-            System.out.println(el);
-        }
+
+        doroti.createFirstFile(fileNames.getFirst());
     }
 }
