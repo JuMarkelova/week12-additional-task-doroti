@@ -65,7 +65,7 @@ public class Robot {
         String word;
         try (FileReader reader = new FileReader(this.originFile);
              BufferedReader bReader = new BufferedReader(reader)) {
-             String line;
+            String line;
             while ((line = bReader.readLine()) != null) {
                 StringTokenizer tokenizer = new StringTokenizer(line);
                 while (tokenizer.hasMoreTokens()) {
