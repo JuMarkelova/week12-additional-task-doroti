@@ -18,7 +18,7 @@ public class RobotTests {
         File file = new File("test.txt");
         try (FileWriter fileWriter = new FileWriter(file)) {
             String s1 = "Hi, my name is dehdeh2*, and yours?";
-            String s2 = "I want to tell you 6hDHe! That";
+            String s2 = "I want to tell you 6hDHe! That is";
             fileWriter.write(s1 + "\n" + s2);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -46,7 +46,7 @@ public class RobotTests {
     @Test
     public void createFullWordList() {
         Robot robot = new Robot("test.txt");
-        List<String> words = robot.getWords();
+        List<String> words = robot.getDistinctWords();
         Assert.assertEquals(words.size(), 14, "Wrong number of words");
         Assert.assertEquals(words.getFirst(), "Hi", "Wrong first word");
         Assert.assertEquals(words.get(4), "dehdeh2*", "Wrong fifth word");
@@ -72,7 +72,7 @@ public class RobotTests {
         robot.createFirstFile("first.txt");
         File file = new File("first.txt");
         robot.setOriginFile(file);
-        List<String> evenWords = robot.getWords();
+        List<String> evenWords = robot.getDistinctWords();
         Assert.assertEquals(evenWords.size(), 2, "Wrong number of even words");
     }
 
@@ -82,7 +82,7 @@ public class RobotTests {
         robot.createSecondFile("second.txt");
         File file = new File("second.txt");
         robot.setOriginFile(file);
-        List<String> evenWords = robot.getWords();
+        List<String> evenWords = robot.getDistinctWords();
         Assert.assertEquals(evenWords.size(), 12, "Wrong number of odd words");
     }
 

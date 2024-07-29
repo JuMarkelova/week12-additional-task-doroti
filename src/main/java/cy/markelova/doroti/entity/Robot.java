@@ -40,7 +40,6 @@ public class Robot {
             while (names.size() < 2) {
                 while ((line = bufferedReader.readLine()) != null) {
                     StringTokenizer tokenizer = new StringTokenizer(line);
-
                     while (tokenizer.hasMoreTokens()) {
                         String word = tokenizer.nextToken();
                         word = word.replaceAll("^[.,]?|[.,!?;:]+$", "");
@@ -61,15 +60,14 @@ public class Robot {
         return names;
     }
 
-    public List<String> getWords() {
+    public List<String> getDistinctWords() {
         List<String> words = new ArrayList<>();
         String word;
         try (FileReader reader = new FileReader(this.originFile);
              BufferedReader bReader = new BufferedReader(reader)) {
-            String line;
+             String line;
             while ((line = bReader.readLine()) != null) {
                 StringTokenizer tokenizer = new StringTokenizer(line);
-
                 while (tokenizer.hasMoreTokens()) {
                     word = tokenizer.nextToken();
                     word = word.replaceAll("^[.,]?|[.,!?;:]+$", "");
@@ -78,15 +76,15 @@ public class Robot {
                     }
                 }
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return words;
+//        return words;
+        return words.stream().distinct().toList();
     }
 
     public List<String> getEvenWords() {
-        List<String> words = getWords();
+        List<String> words = getDistinctWords();
         List<String> evenWords = new ArrayList<>();
         for (String el : words) {
             int countEvenSymbol = countVowels(el);
@@ -98,7 +96,7 @@ public class Robot {
     }
 
     public List<String> getOddWords() {
-        List<String> words = getWords();
+        List<String> words = getDistinctWords();
         List<String> evenWords = new ArrayList<>();
         for (String el : words) {
             if (countVowels(el) % 2 == 1) {
