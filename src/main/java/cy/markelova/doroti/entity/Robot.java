@@ -7,7 +7,6 @@ import java.util.StringTokenizer;
 
 public class Robot {
 
-
     private File originFile;
 
     public Robot(String path) {
