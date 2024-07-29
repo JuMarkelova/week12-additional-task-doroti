@@ -130,7 +130,6 @@ public class Robot {
             List<String> words = getEvenWords();
             for (String word : words) {
                 bufferedWriter.write(word + " ");
-
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
