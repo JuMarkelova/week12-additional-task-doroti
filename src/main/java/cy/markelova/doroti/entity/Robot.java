@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class Robot {
 
     private File originFile;
+    List<String> notWordsList = new ArrayList<>();
 
     public Robot(String path) {
         this.originFile = new File(path);
@@ -19,6 +20,14 @@ public class Robot {
 
     public void setOriginFile(File originFile) {
         this.originFile = originFile;
+    }
+
+    public List<String> getNotWordsList() {
+        return notWordsList;
+    }
+
+    public void setNotWordsList(List<String> notWordsList) {
+        this.notWordsList = notWordsList;
     }
 
     public List<String> getNameFiles() {
@@ -37,7 +46,9 @@ public class Robot {
                         word = word.replaceAll("^[.,]?|[.,!?;:]+$", "");
                         if (!word.matches("[a-zA-Z]+-*[a-zA-Z]*")) {
                             wrongWord = word;
+                            notWordsList.add(wrongWord);
                         } else if (wrongWord != null) {
+                            notWordsList.add(word);
                             names.add(word);
                             wrongWord = null;
                         }
@@ -62,7 +73,9 @@ public class Robot {
                 while (tokenizer.hasMoreTokens()) {
                     word = tokenizer.nextToken();
                     word = word.replaceAll("^[.,]?|[.,!?;:]+$", "");
-                    words.add(word);
+                    if (!notWordsList.contains(word)) {
+                        words.add(word);
+                    }
                 }
             }
 
@@ -117,6 +130,7 @@ public class Robot {
             List<String> words = getEvenWords();
             for (String word : words) {
                 bufferedWriter.write(word + " ");
+
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());

@@ -85,4 +85,15 @@ public class RobotTests {
         List<String> evenWords = robot.getWords();
         Assert.assertEquals(evenWords.size(), 12, "Wrong number of odd words");
     }
+
+    @Test
+    public void defineWrongWords() {
+        Robot robot = new Robot("test.txt");
+        robot.getNameFiles();
+        Assert.assertEquals(robot.getNotWordsList().size(), 4, "Wrong number of wrong words");
+        Assert.assertEquals(robot.getNotWordsList().getFirst(), "dehdeh2*", "Incorrect definition of not a word");
+        Assert.assertEquals(robot.getNotWordsList().get(1), "and", "Incorrect definition of not a word");
+        Assert.assertEquals(robot.getNotWordsList().get(2), "6hDHe", "Incorrect definition of not a word");
+        Assert.assertEquals(robot.getNotWordsList().get(3), "That", "Incorrect definition of not a word");
+    }
 }
