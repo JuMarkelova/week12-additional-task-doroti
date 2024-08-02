@@ -17,8 +17,8 @@ public class RobotTests {
     public void createFile() {
         File file = new File("test.txt");
         try (FileWriter fileWriter = new FileWriter(file)) {
-            String s1 = "Hi, my name is dehdeh2*, and yours?";
-            String s2 = "I want to tell you 6hDHe! That is";
+            String s1 = "Hi, my name is dehdeh2*,. and yours?";
+            String s2 = "I want to tell you 6hDHe! That is.";
             fileWriter.write(s1 + "\n" + s2);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -95,5 +95,14 @@ public class RobotTests {
         Assert.assertEquals(robot.getNotWordsList().get(1), "and", "Incorrect definition of not a word");
         Assert.assertEquals(robot.getNotWordsList().get(2), "6hDHe", "Incorrect definition of not a word");
         Assert.assertEquals(robot.getNotWordsList().get(3), "That", "Incorrect definition of not a word");
+    }
+
+    @Test
+    public void countSymbols() {
+        Robot robot = new Robot("test.txt");
+        int countDots = robot.countSymbol('.');
+        int countSemicolons = robot.countSymbol(';');
+        Assert.assertEquals(countDots, 2, "Wrong number of dots");
+        Assert.assertEquals(countSemicolons, 0, "Wrong number of semicolons");
     }
 }

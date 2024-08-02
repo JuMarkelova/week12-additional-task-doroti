@@ -79,7 +79,6 @@ public class Robot {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        return words;
         return words.stream().distinct().toList();
     }
 
@@ -145,5 +144,20 @@ public class Robot {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public int countSymbol(char symbol) {
+        int count = 0;
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(originFile))) {
+            int character;
+            while ((character = bufferedReader.read()) != -1) {
+                if (character == symbol) {
+                    count++;
+                }
+            }
+            }catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return count;
     }
 }
