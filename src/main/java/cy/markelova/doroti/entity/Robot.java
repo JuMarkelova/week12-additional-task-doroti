@@ -155,9 +155,28 @@ public class Robot {
                     count++;
                 }
             }
-            }catch (IOException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
         return count;
+    }
+
+    public void createThirdFile(String name) {
+        File file = new File(name);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+            bufferedWriter.write(getStringToFile(',') + "\n");
+            bufferedWriter.write(getStringToFile('.') + "\n");
+            bufferedWriter.write(getStringToFile('!') + "\n");
+            bufferedWriter.write(getStringToFile('?') + "\n");
+            bufferedWriter.write(getStringToFile(':') + "\n");
+            bufferedWriter.write(getStringToFile(';') + "\n");
+            bufferedWriter.write(getStringToFile('-'));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public String getStringToFile(char symbol) {
+        return symbol + " " + countSymbol(symbol);
     }
 }

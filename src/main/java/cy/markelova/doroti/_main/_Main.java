@@ -12,5 +12,6 @@ public class _Main {
         List<String> fileNames = doroti.getNameFiles();
         doroti.createFirstFile(fileNames.getFirst());
         doroti.createSecondFile(fileNames.get(1));
+        doroti.createThirdFile("punctuation");
     }
 }

@@ -30,9 +30,11 @@ public class RobotTests {
         File testFile = new File("test.txt");
         File testFileFirst = new File("first.txt");
         File testFileSecond = new File("second.txt");
+        File testFileThird = new File("third.txt");
         testFile.delete();
         testFileFirst.delete();
         testFileSecond.delete();
+        testFileThird.delete();
     }
 
     @Test
@@ -104,5 +106,15 @@ public class RobotTests {
         int countSemicolons = robot.countSymbol(';');
         Assert.assertEquals(countDots, 2, "Wrong number of dots");
         Assert.assertEquals(countSemicolons, 0, "Wrong number of semicolons");
+    }
+
+    @Test
+    public void createThirdFile() {
+        Robot robot = new Robot("test.txt");
+        robot.createThirdFile("third.txt");
+        int countCommas = robot.countSymbol(',');
+        int countQuestions = robot.countSymbol('?');
+        Assert.assertEquals(countCommas, 2, "Wrong number of commas");
+        Assert.assertEquals(countQuestions, 1, "Wrong number of question signs");
     }
 }
