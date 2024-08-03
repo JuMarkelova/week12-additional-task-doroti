@@ -135,8 +135,34 @@ public class Robot {
         }
     }
 
+    public void createFirstFile(String directoryPath, String name) {
+        File file = new File(directoryPath, name);
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            List<String> words = getEvenWords();
+            for (String word : words) {
+                bufferedWriter.write(word + " ");
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     public void createSecondFile(String name) {
         File file = new File(name);
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            List<String> words = getOddWords();
+            for (String word : words) {
+                bufferedWriter.write(word + " ");
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void createSecondFile(String directoryPath, String name) {
+        File file = new File(directoryPath, name);
         try (FileWriter fileWriter = new FileWriter(file);
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             List<String> words = getOddWords();
@@ -163,6 +189,21 @@ public class Robot {
         return count;
     }
 
+    public void createThirdFile(String directoryPath, String name) {
+        File file = new File(directoryPath, name);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+            bufferedWriter.write(getStringToFile(',') + "\n");
+            bufferedWriter.write(getStringToFile('.') + "\n");
+            bufferedWriter.write(getStringToFile('!') + "\n");
+            bufferedWriter.write(getStringToFile('?') + "\n");
+            bufferedWriter.write(getStringToFile(':') + "\n");
+            bufferedWriter.write(getStringToFile(';') + "\n");
+            bufferedWriter.write(getStringToFile('-'));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     public void createThirdFile(String name) {
         File file = new File(name);
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
@@ -178,7 +219,7 @@ public class Robot {
         }
     }
 
-    public void createDirData() {
+    public String createDirData() {
         File baseDirectory = new File("data");
         if (baseDirectory.exists()) {
             deleteDirData(baseDirectory);
@@ -187,6 +228,7 @@ public class Robot {
         File dateDirectory = new File(baseDirectory, date);
         baseDirectory.mkdir();
         dateDirectory.mkdir();
+        return dateDirectory.getAbsolutePath();
     }
 
     public void deleteDirData(File directory) {

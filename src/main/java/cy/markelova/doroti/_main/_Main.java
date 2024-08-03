@@ -2,7 +2,6 @@ package cy.markelova.doroti._main;
 
 import cy.markelova.doroti.entity.Robot;
 
-import java.io.File;
 import java.util.List;
 
 public class _Main {
@@ -11,10 +10,10 @@ public class _Main {
         String path = "/Users/iuliia/javaStudy/ITGirls/Module1JavaCore/Week12/week12-additional-task-doroti/src/main/resources/text.txt";
         Robot doroti = new Robot(path);
         List<String> fileNames = doroti.getNameFiles();
-//        doroti.createFirstFile(fileNames.getFirst());
-//        doroti.createSecondFile(fileNames.get(1));
-        doroti.createDirData();
-//        doroti.createThirdFile("punctuation");
-        doroti.deleteDirData(new File("data"));
+        String directoryPath = doroti.createDirData();
+
+        doroti.createFirstFile(directoryPath, fileNames.getFirst());
+        doroti.createSecondFile(directoryPath, fileNames.get(1));
+        doroti.createThirdFile(directoryPath, "punctuation");
     }
 }
