@@ -2,6 +2,7 @@ package cy.markelova.doroti._main;
 
 import cy.markelova.doroti.entity.Robot;
 
+import java.io.File;
 import java.util.List;
 
 public class _Main {
@@ -14,5 +15,6 @@ public class _Main {
 //        doroti.createSecondFile(fileNames.get(1));
         doroti.createDirData();
 //        doroti.createThirdFile("punctuation");
+        doroti.deleteDirData(new File("data"));
     }
 }

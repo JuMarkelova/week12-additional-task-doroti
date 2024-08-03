@@ -1,7 +1,9 @@
 package cy.markelova.doroti.entity;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -177,11 +179,14 @@ public class Robot {
     }
 
     public void createDirData() {
-        File directory = new File("data");
-        if (directory.exists()) {
-            deleteDirData(directory);
+        File baseDirectory = new File("data");
+        if (baseDirectory.exists()) {
+            deleteDirData(baseDirectory);
         }
-        directory.mkdir();
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        File dateDirectory = new File(baseDirectory, date);
+        baseDirectory.mkdir();
+        dateDirectory.mkdir();
     }
 
     public void deleteDirData(File directory) {
