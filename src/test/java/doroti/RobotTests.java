@@ -31,10 +31,12 @@ public class RobotTests {
         File testFileFirst = new File("first.txt");
         File testFileSecond = new File("second.txt");
         File testFileThird = new File("third.txt");
+        File testDirDate = new File("data");
         testFile.delete();
         testFileFirst.delete();
         testFileSecond.delete();
         testFileThird.delete();
+        testDirDate.delete();
     }
 
     @Test
@@ -116,5 +118,13 @@ public class RobotTests {
         int countQuestions = robot.countSymbol('?');
         Assert.assertEquals(countCommas, 2, "Wrong number of commas");
         Assert.assertEquals(countQuestions, 1, "Wrong number of question signs");
+    }
+
+    @Test
+    public void createDataDir() {
+        Robot robot = new Robot("test.txt");
+        File file = new File("data");
+        robot.createDirData();
+        Assert.assertTrue(file.isDirectory(), "Data is not a directory");
     }
 }

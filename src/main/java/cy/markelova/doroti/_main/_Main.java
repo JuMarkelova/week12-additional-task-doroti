@@ -10,8 +10,9 @@ public class _Main {
         String path = "/Users/iuliia/javaStudy/ITGirls/Module1JavaCore/Week12/week12-additional-task-doroti/src/main/resources/text.txt";
         Robot doroti = new Robot(path);
         List<String> fileNames = doroti.getNameFiles();
-        doroti.createFirstFile(fileNames.getFirst());
-        doroti.createSecondFile(fileNames.get(1));
-        doroti.createThirdFile("punctuation");
+//        doroti.createFirstFile(fileNames.getFirst());
+//        doroti.createSecondFile(fileNames.get(1));
+        doroti.createDirData();
+//        doroti.createThirdFile("punctuation");
     }
 }

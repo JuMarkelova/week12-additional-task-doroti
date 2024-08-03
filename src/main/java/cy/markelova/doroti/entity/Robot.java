@@ -176,6 +176,24 @@ public class Robot {
         }
     }
 
+    public void createDirData() {
+        File directory = new File("data");
+        if (directory.exists()) {
+            deleteDirData(directory);
+        }
+        directory.mkdir();
+    }
+
+    public void deleteDirData(File directory) {
+        File[] contents = directory.listFiles();
+        if (contents != null) {
+            for (File file : contents) {
+                deleteDirData(file);
+            }
+        }
+        directory.delete();
+    }
+
     public String getStringToFile(char symbol) {
         return symbol + " " + countSymbol(symbol);
     }
