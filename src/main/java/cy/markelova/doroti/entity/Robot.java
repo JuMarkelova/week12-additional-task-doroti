@@ -216,6 +216,7 @@ public class Robot {
             bufferedWriter.write(getStringToFile('-'));
         } catch (IOException e) {
             System.err.println(e.getMessage());
+
         }
     }
 
